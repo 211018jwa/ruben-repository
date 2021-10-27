@@ -14,10 +14,10 @@ public class Main {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\rmich\\Downloads\\chromedriver_win32\\chromedriver.exe");
         
         
-        //specified location of the webdriver now we can instantiate a webdriver object
+        
         WebDriver driver = new ChromeDriver();
         
-        driver.get("http://localhost:8080");// navigates to website
+        driver.get("http://localhost:8080");
         
         WebElement addInput1 = driver.findElement(By.id("addNum1"));
         WebElement addInput2 = driver.findElement(By.id("addNum2"));
@@ -27,12 +27,11 @@ public class Main {
         addInput2.sendKeys("26");
         addButton.click();
         
-        driver.switchTo().frame("addResult");//Switch into the iframe
-        
+        driver.switchTo().frame("addResult");
         WebElement addOutput = driver.findElement(By.tagName("pre"));
         System.out.println("The result of adding 22 and 26 is " + addOutput.getText());
         
-        driver.switchTo().defaultContent();//get outside of the iframe
+        driver.switchTo().defaultContent();
         
         WebElement subInput1 = driver.findElement(By.id("subNum1"));
         WebElement subInput2 = driver.findElement(By.id("subNum2"));
@@ -42,6 +41,12 @@ public class Main {
         subInput2.sendKeys("10");
         subButton.click();
         
+        driver.switchTo().frame("subResult");
+        WebElement subOutput = driver.findElement(By.tagName("pre"));
+        System.out.println("The result of subtracting 65 and 10 is " + subOutput.getText());
+        
+        driver.switchTo().defaultContent();
+        
         WebElement multInput1 = driver.findElement(By.id("multNum1"));
         WebElement multInput2 = driver.findElement(By.id("multNum2"));
         WebElement multButton = driver.findElement(By.id("multBtn"));
@@ -49,6 +54,12 @@ public class Main {
         multInput1.sendKeys("22");
         multInput2.sendKeys("38");
         multButton.click();
+        
+        driver.switchTo().frame("multResult");
+        WebElement multOutput = driver.findElement(By.tagName("pre"));
+        System.out.println("The result of multiplying 22 and 38 is " + multOutput.getText());
+        
+        driver.switchTo().defaultContent();
         
         WebElement divInput1 = driver.findElement(By.id("divNum1"));
         WebElement divInput2 = driver.findElement(By.id("divNum2"));
@@ -58,11 +69,15 @@ public class Main {
         divInput2.sendKeys("5");
         divButton.click();
         
+        driver.switchTo().frame("divResult");
+        WebElement divOutput = driver.findElement(By.tagName("pre"));
+        System.out.println("The result of dividing 30 and 5 is " + divOutput.getText());
         
-        Thread.sleep(5000);//browser will close after 5 seconds
+        driver.switchTo().defaultContent();
         
-        //quit method
-        //when done scripting tasks its important to quit the process
+        
+        Thread.sleep(5000);
+        
         driver.quit();
 	}
 	
